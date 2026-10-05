@@ -1,30 +1,22 @@
 # Pandas
 
-## What is Pandas?
+### What is Pandas?
 
-Pandas is a library used for working with datasets.
+- Pandas is a library used for working with datasets.
+- It provides functions to analyze, clean, explore, and manipulate data.
 
-It provides functions to:
-
-- Analyze data
-- Clean data
-- Explore data
-- Manipulate data
-
-## It mainly works with
+### What Pandas Mainly Works With
 
 - **Series** → A 1D labelled array. When placed inside a DataFrame, it behaves like one column of data.
 - **DataFrame** → A 2D table of data, made up of multiple Series (columns).
 
-## Installation
-
-Install Pandas using:
+### Installation
 
 ```bash
 pip install pandas
 ```
 
-## Import
+### Import
 
 ```python
 import pandas as pd
@@ -33,13 +25,13 @@ import numpy as np
 
 ---
 
-# 1. Series
+## 1. Series
 
 A Series is a 1D labelled array.
 
-## Default Syntax of `pd.Series()`
+### Default Syntax of `pd.Series()`
 
-The general syntax of `pd.Series()` can be represented as:
+The general syntax of `pd.Series()`.
 
 ```python
 pd.Series(
@@ -51,9 +43,10 @@ pd.Series(
 )
 ```
 
-## Creating a Series
+### Creating a Series
 
-A Series can be created by providing values, custom row labels, a data type, and a name.
+- A Series can be created by providing values, custom row labels, a data type, and a name.
+- The Series `s` created here is used in all the examples below.
 
 ```python
 s = pd.Series(
@@ -63,12 +56,9 @@ s = pd.Series(
     name="Marks",
     copy=False
 )
-
 print(s)
 ```
 
-**Output:**
-
 ```text
 A    10.0
 B    20.0
@@ -82,21 +72,18 @@ Name: Marks, dtype: float64
 
 ---
 
-# 2. Basic Information
+## 2. Basic Information
 
-## `head()`
+### `head()`
 
-`head()` returns the first 5 values of a Series by default.
+Returns the first 5 values of a Series by default.
 
 ```python
-print("First 5 values (default):\n", s.head())
+print(s.head())
 ```
 
-**Output:**
-
 ```text
-First 5 values (default):
- A    10.0
+A    10.0
 B    20.0
 C    30.0
 D     NaN
@@ -104,37 +91,31 @@ E    20.0
 Name: Marks, dtype: float64
 ```
 
-## `head(n)`
+### `head(n)`
 
-`head(n)` returns the first `n` values.
+Returns the first `n` values.
 
 ```python
-print("First 3 values:\n", s.head(3))
+print(s.head(3))
 ```
 
-**Output:**
-
 ```text
-First 3 values:
- A    10.0
+A    10.0
 B    20.0
 C    30.0
 Name: Marks, dtype: float64
 ```
 
-## `tail()`
+### `tail()`
 
-`tail()` returns the last 5 values of a Series by default.
+Returns the last 5 values of a Series by default.
 
 ```python
-print("Last 5 values (default):\n", s.tail())
+print(s.tail())
 ```
 
-**Output:**
-
 ```text
-Last 5 values (default):
- C    30.0
+C    30.0
 D     NaN
 E    20.0
 F    10.0
@@ -142,232 +123,202 @@ G    40.0
 Name: Marks, dtype: float64
 ```
 
-## `tail(n)`
+### `tail(n)`
 
-`tail(n)` returns the last `n` values.
+Returns the last `n` values.
 
 ```python
-print("Last 2 values:\n", s.tail(2))
+print(s.tail(2))
 ```
 
-**Output:**
-
 ```text
-Last 2 values:
- F    10.0
+F    10.0
 G    40.0
 Name: Marks, dtype: float64
 ```
 
-## `index`
+### `index`
 
-The `index` attribute returns the row labels of the Series as a Pandas Index object.
-
-```python
-print("Row labels (index object):", s.index)
-```
-
-**Output:**
-
-```text
-Row labels (index object): Index(['A', 'B', 'C', 'D', 'E', 'F', 'G'], dtype='object')
-```
-
-## `index.tolist()`
-
-`index.tolist()` converts the row labels into a Python list.
+Returns the row labels of the Series as a Pandas Index object.
 
 ```python
-print("Row labels (index --> Python list):", s.index.tolist())
+print(s.index)
 ```
-
-**Output:**
 
 ```text
-Row labels (index --> Python list): ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+Index(['A', 'B', 'C', 'D', 'E', 'F', 'G'], dtype='str')
 ```
 
-## `values`
+### `index.tolist()`
 
-The `values` attribute returns the values of the Series as a NumPy array.
+Converts the row labels into a Python list.
 
 ```python
-print("Values only (NumPy array --> spaces):", s.values)
+print(s.index.tolist())
 ```
-
-**Output:**
 
 ```text
-Values only (NumPy array --> spaces): [10. 20. 30. nan 20. 10. 40.]
+['A', 'B', 'C', 'D', 'E', 'F', 'G']
 ```
 
-## `values.tolist()`
+### `values`
 
-`values.tolist()` converts the Series values into a Python list.
+Returns the values of the Series as a NumPy array.
 
 ```python
-print("Values only (Python list --> commas):", s.values.tolist())
+print(s.values)
 ```
 
-**Output:**
+```text
+[10. 20. 30. nan 20. 10. 40.]
+```
+
+### `values.tolist()`
+
+Converts the Series values into a Python list.
+
+```python
+print(s.values.tolist())
+```
 
 ```text
-Values only (Python list --> commas): [10.0, 20.0, 30.0, nan, 20.0, 10.0, 40.0]
+[10.0, 20.0, 30.0, nan, 20.0, 10.0, 40.0]
 ```
 
 ---
 
-# 3. Math / Statistics
+## 3. Math / Statistics
 
-## `sum()`
+### `sum()`
 
-`sum()` calculates the sum of the values in the Series. By default, missing values (`NaN`) are ignored.
-
-```python
-print("Sum (ignores NaN):", s.sum())
-```
-
-**Output:**
-
-```text
-Sum (ignores NaN): 130.0
-```
-
-## `mean()`
-
-`mean()` calculates the average of the values in the Series. By default, `NaN` values are ignored.
+- Calculates the sum of the values in the Series.
+- By default, missing values (`NaN`) are ignored.
 
 ```python
-print("Mean (average):", s.mean())
+print(s.sum())
 ```
-
-**Output:**
 
 ```text
-Mean (average): 21.666666666666668
+130.0
 ```
 
-## `max()`
+### `mean()`
 
-`max()` returns the maximum value in the Series.
+- Calculates the average of the values in the Series.
+- By default, `NaN` values are ignored.
 
 ```python
-print("Maximum:", s.max())
+print(s.mean())
 ```
-
-**Output:**
 
 ```text
-Maximum: 40.0
+21.666666666666668
 ```
 
-## `min()`
+### `max()`
 
-`min()` returns the minimum value in the Series.
+Returns the maximum value in the Series.
 
 ```python
-print("Minimum:", s.min())
+print(s.max())
 ```
-
-**Output:**
 
 ```text
-Minimum: 10.0
+40.0
 ```
 
-## `std()`
+### `min()`
 
-`std()` calculates the standard deviation of the values in the Series.
+Returns the minimum value in the Series.
 
 ```python
-print("Standard Deviation:", s.std())
+print(s.min())
 ```
 
-**Output:**
+```text
+10.0
+```
+
+### `std()`
+
+Calculates the standard deviation of the values in the Series.
+
+```python
+print(s.std())
+```
 
 ```text
-Standard Deviation: 11.547005383792516
+11.690451944500122
 ```
 
 ---
 
-# 4. Selection
+## 4. Selection
 
-## Selecting the First Value
+### Selecting a Single Value
 
-A Series can be accessed using positional indexing.
-
-```python
-print("First value:", s[0])
-```
-
-**Output:**
-
-```text
-First value: 10.0
-```
-
-## Slicing
-
-Slicing can be used to select a range of values.
+A single value can be selected using its label.
 
 ```python
-print("Slice values (s[1:3]):\n", s[1:3])
+print(s["A"])
 ```
 
-**Output:**
+```text
+10.0
+```
+
+### Slicing
+
+- Slicing selects a range of values by position.
+- In `s[start:stop]`, `start` is included and `stop` is excluded.
+
+```python
+print(s[1:3])
+```
 
 ```text
-Slice values (s[1:3]):
- B    20.0
+B    20.0
 C    30.0
 Name: Marks, dtype: float64
 ```
 
-## `loc[]`
+### `loc[]`
 
-`.loc[]` is used to select data by its label.
-
-```python
-print("Select by label (s.loc['C']):", s.loc["C"])
-```
-
-**Output:**
-
-```text
-Select by label (s.loc['C']): 30.0
-```
-
-## `iloc[]`
-
-`.iloc[]` is used to select data by its integer position.
+Selects data by its label.
 
 ```python
-print("Select by position (s.iloc[2]):", s.iloc[2])
+print(s.loc["C"])
 ```
 
-**Output:**
+```text
+30.0
+```
+
+### `iloc[]`
+
+Selects data by its integer position.
+
+```python
+print(s.iloc[2])
+```
 
 ```text
-Select by position (s.iloc[2]): 30.0
+30.0
 ```
 
 ---
 
-# 5. Cleaning
+## 5. Cleaning
 
-## `dropna()`
+### `dropna()`
 
-`dropna()` removes missing (`NaN`) values from the Series.
+Removes missing (`NaN`) values from the Series.
 
 ```python
-print("Remove missing (NaN) values:", s.dropna())
+print(s.dropna())
 ```
 
-**Output:**
-
 ```text
-Remove missing (NaN) values:
 A    10.0
 B    20.0
 C    30.0
@@ -377,18 +328,15 @@ G    40.0
 Name: Marks, dtype: float64
 ```
 
-## `fillna()`
+### `fillna()`
 
-`fillna()` replaces missing (`NaN`) values with a specified value.
+Replaces missing (`NaN`) values with a specified value.
 
 ```python
-print("Fill missing (NaN) with 0:", s.fillna(0))
+print(s.fillna(0))
 ```
 
-**Output:**
-
 ```text
-Fill missing (NaN) with 0:
 A    10.0
 B    20.0
 C    30.0
@@ -399,18 +347,15 @@ G    40.0
 Name: Marks, dtype: float64
 ```
 
-## `replace()`
+### `replace()`
 
-`replace()` replaces specified values with another value.
+Replaces specified values with another value.
 
 ```python
-print("Replace 10 with 99:", s.replace(10, 99))
+print(s.replace(10, 99))
 ```
 
-**Output:**
-
 ```text
-Replace 10 with 99:
 A    99.0
 B    20.0
 C    30.0
@@ -423,59 +368,51 @@ Name: Marks, dtype: float64
 
 ---
 
-# 6. Other Useful Functions
+## 6. Other Useful Functions
 
-## `value_counts()`
+### `value_counts()`
 
-`value_counts()` counts how frequently each value appears in the Series.
-
-By default, missing values are not included.
+- Counts how frequently each value appears in the Series.
+- By default, missing values are not included.
 
 ```python
-print("Frequency of each value:", s.value_counts())
+print(s.value_counts())
 ```
 
-**Output:**
-
 ```text
-Frequency of each value:
-20.0    2
+Marks
 10.0    2
+20.0    2
 30.0    1
 40.0    1
 Name: count, dtype: int64
 ```
 
-## `unique()`
+### `unique()`
 
-`unique()` returns the unique values present in the Series.
-
-```python
-print("Unique values:", s.unique())
-```
-
-**Output:**
-
-```text
-Unique values: [10. 20. 30. nan 40.]
-```
-
-## `sort_values()`
-
-`sort_values()` sorts the values of the Series in ascending order by default.
+Returns the unique values present in the Series.
 
 ```python
-print("Sorted values:", s.sort_values())
+print(s.unique())
 ```
 
-**Output:**
+```text
+[10. 20. 30. nan 40.]
+```
+
+### `sort_values()`
+
+Sorts the values of the Series in ascending order by default.
+
+```python
+print(s.sort_values())
+```
 
 ```text
-Sorted values:
 A    10.0
 F    10.0
-B    20.0
 E    20.0
+B    20.0
 C    30.0
 G    40.0
 D     NaN

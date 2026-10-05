@@ -34,9 +34,29 @@ function makeLesson(path, content) {
   }
 }
 
-export const lessons = Object.entries(markdownFiles)
-  .map(([path, content]) => makeLesson(path, content))
-  .sort((left, right) => left.subject.localeCompare(right.subject) || left.title.localeCompare(right.title))
+const markdownLessons = Object.entries(markdownFiles).map(([path, content]) => makeLesson(path, content))
+const pythonLessons = markdownLessons
+  .filter((lesson) => lesson.subject === 'Python')
+  .sort((left, right) => left.id.localeCompare(right.id, undefined, { numeric: true }))
+
+const pythonLesson = pythonLessons.length
+  ? {
+      id: 'Python',
+      subject: 'Python',
+      title: 'Python',
+      markdownTitle: 'Python',
+      content: `# Python\n\n${pythonLessons.map((lesson) => {
+        const lectureTitle = markdownTitle(lesson.content, lesson.title).replace(/^Lecture\s+\d+:\s*/i, '')
+        const lectureNotes = lesson.content.replace(/^#\s+[^\n]*(?:\n|$)\s*/, '')
+        return `## Lecture ${lesson.title.match(/Lecture(\d+)/)?.[1]}: ${lectureTitle}\n\n${lectureNotes}`
+      }).join('\n\n')}`,
+    }
+  : null
+
+export const lessons = [
+  ...markdownLessons.filter((lesson) => lesson.subject !== 'Python'),
+  ...(pythonLesson ? [pythonLesson] : []),
+].sort((left, right) => left.subject.localeCompare(right.subject) || left.title.localeCompare(right.title))
 
 export const subjects = Array.from(
   lessons.reduce((groups, lesson) => {

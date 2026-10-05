@@ -1,20 +1,15 @@
 # NumPy
 
-## What is NumPy?
+### What is NumPy?
 
-NumPy stands for **Numerical Python**.
+NumPy stands for **Numerical Python**. It is a library used for numerical calculations and for solving complex scientific problems.
 
-It is a library used for **numerical calculations** and solving complex scientific problems.
-
-## Why NumPy?
+### Why NumPy?
 
 - Python lists are slower and use more memory for large calculations.
 - NumPy arrays (`ndarray`) are faster and more memory-efficient than Python lists.
-- NumPy supports **vectorized operations**, meaning mathematical operations can be performed on entire arrays without explicitly using loops.
-- NumPy provides powerful functions for:
-  - Linear algebra
-  - Statistics
-  - Random number generation
+- NumPy supports **vectorized operations**, so mathematical operations can be applied to entire arrays without explicit loops.
+- NumPy provides powerful functions for linear algebra, statistics, and random number generation.
 
 ```python
 import numpy as np
@@ -22,97 +17,78 @@ import numpy as np
 
 ---
 
-# 1. Creating NumPy Arrays
+## 1. Creating NumPy Arrays
 
-### 1D Array
+### `np.array()` — 1D Array
 
-A 1D array stores numbers in a single row.
+- Creates an array from a Python list.
+- A 1D array stores values in a single row.
 
 ```python
-arr = np.array([1, 2, 3, 4])
-
-print("1D Array:", arr)
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)
 ```
-
-**Output:**
 
 ```text
-1D Array: [1 2 3 4]
+[1 2 3 4 5]
 ```
 
-### 2D Array
+### `np.array()` — 2D Array
 
-A 2D array stores numbers in rows and columns.
+- Creates an array from a list of lists.
+- A 2D array stores values in rows and columns.
 
 ```python
 arr = np.array([[1, 2], [3, 4]])
-
-print("2D Array:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-2D Array:
 [[1 2]
  [3 4]]
 ```
 
-### Zeros Matrix
+### `np.zeros()`
 
-`np.zeros()` creates an array filled with `0`s.
-
-Here, `(3, 3)` creates a 3 × 3 matrix.
+- Creates an array filled with `0`s.
+- The argument `(3, 3)` is the shape (rows, columns).
 
 ```python
 arr = np.zeros((3, 3))
-
-print("Zeros:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-Zeros:
 [[0. 0. 0.]
  [0. 0. 0.]
  [0. 0. 0.]]
 ```
 
-### Ones Matrix
+### `np.ones()`
 
-`np.ones()` creates an array filled with `1`s.
-
-Here, `(2, 4)` creates a 2 × 4 matrix.
+- Creates an array filled with `1`s.
+- The argument `(2, 4)` is the shape (rows, columns).
 
 ```python
 arr = np.ones((2, 4))
-
-print("Ones:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-Ones:
 [[1. 1. 1. 1.]
  [1. 1. 1. 1.]]
 ```
 
-### Identity Matrix
+### `np.eye()`
 
-`np.eye()` creates a square identity matrix with `1`s on the main diagonal and `0`s elsewhere.
+Creates an identity matrix, with `1`s on the main diagonal and `0`s elsewhere.
 
 ```python
 arr = np.eye(3)
-
-print("Identity Matrix:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-Identity Matrix:
 [[1. 0. 0.]
  [0. 1. 0.]
  [0. 0. 1.]]
@@ -120,280 +96,237 @@ Identity Matrix:
 
 ### `np.arange()`
 
-`np.arange(start, stop, step)` generates values starting from `start` and continues up to, but **not including**, `stop`.
+- Generates values from `start` up to, but **not including**, `stop`.
+- Syntax: `np.arange(start, stop, step)`
 
 ```python
 arr = np.arange(0, 10, 2)
-
-print("Arange:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-Arange: [0 2 4 6 8]
+[0 2 4 6 8]
 ```
 
 ### `np.linspace()`
 
-`np.linspace(start, stop, num)` generates `num` evenly spaced values between `start` and `stop`.
-
-Unlike `np.arange()`, the `stop` value is included by default.
+- Generates `num` evenly spaced values between `start` and `stop`.
+- Unlike `np.arange()`, the `stop` value is **included**.
+- Syntax: `np.linspace(start, stop, num)`
 
 ```python
 arr = np.linspace(0, 1, 5)
-
-print("Linspace:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-Linspace: [0.   0.25 0.5  0.75 1.  ]
+[0.   0.25 0.5  0.75 1.  ]
 ```
 
 ---
 
-# 2. Array Attributes
+## 2. Array Attributes
 
 ### `shape`
 
-The `shape` attribute returns the size of an array along each dimension.
-
-For a 2D array, it returns the number of rows and columns.
+- Returns the size of the array along each dimension.
+- For a 2D array, this is `(rows, columns)`.
 
 ```python
 arr = np.array([[1, 2], [3, 4]])
-
-print("Shape:", arr.shape)
+print(arr.shape)
 ```
 
-**Output:**
-
 ```text
-Shape: (2, 2)
+(2, 2)
 ```
 
 ### `ndim`
 
-The `ndim` attribute returns the number of dimensions, also called axes, of an array.
-
-Examples include:
-
-- 1D array
-- 2D array
-- 3D array
+Returns the number of dimensions (axes) of the array.
 
 ```python
 arr = np.array([[1, 2], [3, 4]])
-
-print("Number of dimensions:", arr.ndim)
+print(arr.ndim)
 ```
 
-**Output:**
-
 ```text
-Number of dimensions: 2
+2
 ```
 
 ### `dtype`
 
-The `dtype` attribute returns the data type of the elements in an array.
+Returns the data type of the elements in the array.
 
 ```python
 arr = np.array([[1, 2], [3, 4]])
-
-print("Data type:", arr.dtype)
+print(arr.dtype)
 ```
 
-**Output:**
-
 ```text
-Data type: int64
+int64
 ```
 
 ---
 
-# 3. Indexing & Slicing
+## 3. Indexing & Slicing
 
-### Indexing in a 1D Array
+### Indexing — First Element
 
-Indexing is used to access individual elements of an array.
-
-Python uses **zero-based indexing**, so the first element has index `0`.
-
-```python
-arr = np.array([10, 20, 30, 40, 50])
-
-print("First index:", arr[0])
-print("Last index:", arr[-1])
-```
-
-**Output:**
-
-```text
-First index: 10
-Last index: 50
-```
-
-### Slicing a 1D Array
-
-Slicing is used to access a range of elements.
-
-The syntax `arr[start:stop]` includes `start` but excludes `stop`.
+- Indexing accesses a single element.
+- Python uses **zero-based indexing**, so the first element has index `0`.
 
 ```python
-arr = np.array([10, 20, 30, 40, 50])
-
-print("Slice 1:4:", arr[1:4])
+arr = np.array([1, 2, 3, 4, 5])
+print(arr[0])
 ```
-
-**Output:**
 
 ```text
-Slice 1:4: [20 30 40]
+1
 ```
 
-### Indexing a 2D Array
+### Indexing — Last Element
 
-A 2D array can be accessed using `[row, column]`.
+A negative index counts from the end. `-1` refers to the last element.
 
 ```python
-arr = np.array([[1, 2, 3], [4, 5, 6]])
-
-print("Element at row 0, col 1:", arr[0, 1])
+arr = np.array([1, 2, 3, 4, 5])
+print(arr[-1])
 ```
-
-**Output:**
 
 ```text
-Element at row 0, col 1: 2
+5
 ```
 
-### Selecting a Column from a 2D Array
+### Slicing — 1D Array
 
-The expression `arr[:, 1]` selects all rows from column `1`.
+- Accesses a range of elements.
+- In `arr[start:stop]`, `start` is included and `stop` is excluded.
+
+```python
+arr = np.array([1, 2, 3, 4, 5])
+print(arr[1:4])
+```
+
+```text
+[2 3 4]
+```
+
+### Indexing — 2D Array
+
+Accesses an element using `[row, column]`.
 
 ```python
 arr = np.array([[1, 2, 3], [4, 5, 6]])
-
-print("All rows, col 1:", arr[:, 1])
+print(arr[0, 1])
 ```
-
-**Output:**
 
 ```text
-All rows, col 1: [2 5]
+2
 ```
 
-### Selecting a Row from a 2D Array
+### Selecting a Column
 
-The expression `arr[1, :]` selects all columns from row `1`.
+`arr[:, 1]` selects all rows from column `1`.
 
 ```python
 arr = np.array([[1, 2, 3], [4, 5, 6]])
-
-print("Row 1:", arr[1, :])
+print(arr[:, 1])
 ```
 
-**Output:**
+```text
+[2 5]
+```
+
+### Selecting a Row
+
+`arr[1, :]` selects all columns from row `1`.
+
+```python
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr[1, :])
+```
 
 ```text
-Row 1: [4 5 6]
+[4 5 6]
 ```
 
 ---
 
-# 4. Array Operations
+## 4. Array Operations
 
-### Array Addition
+NumPy performs arithmetic operations **element-wise** on arrays of compatible shapes.
 
-NumPy performs arithmetic operations element-wise on arrays of compatible shapes.
+### Addition (`+`)
 
-```python
-arr = np.array([1, 2, 3])
-other = np.array([4, 5, 6])
-
-print("Addition:", arr + other)
-```
-
-**Output:**
-
-```text
-Addition: [5 7 9]
-```
-
-### Array Multiplication
-
-The `*` operator performs element-wise multiplication between NumPy arrays.
+Adds corresponding elements of two arrays.
 
 ```python
-arr = np.array([1, 2, 3])
-other = np.array([4, 5, 6])
-
-print("Multiplication:", arr * other)
+arr = np.array([1, 2, 3, 4, 5])
+other = np.array([6, 7, 8, 9, 10])
+print(arr + other)
 ```
-
-**Output:**
 
 ```text
-Multiplication: [ 4 10 18]
+[ 7  9 11 13 15]
 ```
 
-### Squaring Array Elements
+### Multiplication (`*`)
 
-The `**` operator can be used to raise each element of an array to a power.
+Multiplies corresponding elements of two arrays.
 
 ```python
-arr = np.array([1, 2, 3])
-
-print("Square:", arr ** 2)
+arr = np.array([1, 2, 3, 4, 5])
+other = np.array([6, 7, 8, 9, 10])
+print(arr * other)
 ```
 
-**Output:**
+```text
+[ 6 14 24 36 50]
+```
+
+### Power (`**`)
+
+Raises each element to the given power.
+
+```python
+arr = np.array([1, 2, 3, 4, 5])
+print(arr ** 2)
+```
 
 ```text
-Square: [1 4 9]
+[ 1  4  9 16 25]
 ```
 
 ### `np.sin()`
 
-`np.sin()` calculates the sine of each element in the array.
-
-The values are interpreted in **radians**.
+- Calculates the sine of each element.
+- Values are interpreted in **radians**.
 
 ```python
-arr = np.array([1, 2, 3])
-
-print("Sine:", np.sin(arr))
+arr = np.array([1, 2, 3, 4, 5])
+print(np.sin(arr))
 ```
 
-**Output:**
-
 ```text
-Sine: [0.84147098 0.90929743 0.14112001]
+[ 0.84147098  0.90929743  0.14112001 -0.7568025  -0.95892427]
 ```
 
 ---
 
-# 5. Reshaping & Manipulation
+## 5. Reshaping & Manipulation
 
 ### `reshape()`
 
-`reshape()` changes the shape of an array without changing its data.
+- Changes the shape of an array without changing its data.
+- The total number of elements must stay the same.
 
 ```python
 arr = np.arange(1, 13)
-
-arr = arr.reshape(3, 4)
-
-print("Reshaped 3x4:", arr)
+print(arr.reshape(3, 4))
 ```
 
-**Output:**
-
 ```text
-Reshaped 3x4:
 [[ 1  2  3  4]
  [ 5  6  7  8]
  [ 9 10 11 12]]
@@ -401,37 +334,28 @@ Reshaped 3x4:
 
 ### `flatten()`
 
-`flatten()` converts a multi-dimensional array into a 1D array.
+Converts a multi-dimensional array into a 1D array.
 
 ```python
 arr = np.arange(1, 13).reshape(3, 4)
-
-print("Flattened:", arr.flatten())
+print(arr.flatten())
 ```
 
-**Output:**
-
 ```text
-Flattened:
 [ 1  2  3  4  5  6  7  8  9 10 11 12]
 ```
 
-### `.T` — Transpose
+### `.T`
 
-`.T` returns the transpose of an array.
-
-For a 2D array, it flips the rows and columns.
+- Returns the transpose of an array.
+- For a 2D array, rows and columns are swapped.
 
 ```python
 arr = np.arange(1, 13).reshape(3, 4)
-
-print("Transposed:", arr.T)
+print(arr.T)
 ```
 
-**Output:**
-
 ```text
-Transposed:
 [[ 1  5  9]
  [ 2  6 10]
  [ 3  7 11]
@@ -440,352 +364,291 @@ Transposed:
 
 ### `np.concatenate()`
 
-`np.concatenate()` combines two or more arrays along an existing axis.
+Joins two or more arrays along an existing axis.
 
 ```python
-arr = np.array([1, 2, 3])
-other = np.array([4, 5, 6])
-
-print("Concatenate arrays:", np.concatenate((arr, other)))
+arr = np.array([1, 2, 3, 4, 5])
+other = np.array([6, 7, 8, 9, 10])
+print(np.concatenate((arr, other)))
 ```
 
-**Output:**
-
 ```text
-Concatenate arrays: [1 2 3 4 5 6]
+[ 1  2  3  4  5  6  7  8  9 10]
 ```
 
 ---
 
-# 6. Statistical Functions
+## 6. Statistical Functions
 
 ### `np.mean()`
 
-`np.mean()` calculates the arithmetic mean (average) of the elements in an array.
+Calculates the arithmetic mean (average).
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Mean:", np.mean(arr))
+print(np.mean(arr))
 ```
 
-**Output:**
-
 ```text
-Mean: 3.0
+3.0
 ```
 
 ### `np.median()`
 
-`np.median()` calculates the median value of the elements in an array.
+Calculates the median (middle value).
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Median:", np.median(arr))
+print(np.median(arr))
 ```
 
-**Output:**
-
 ```text
-Median: 3.0
+3.0
 ```
 
 ### `np.std()`
 
-`np.std()` calculates the standard deviation of the elements in an array.
+Calculates the standard deviation, which measures how spread out the values are.
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Standard Deviation:", np.std(arr))
+print(np.std(arr))
 ```
 
-**Output:**
-
 ```text
-Standard Deviation: 1.4142135623730951
+1.4142135623730951
 ```
 
 ### `np.sum()`
 
-`np.sum()` calculates the sum of the elements in an array.
+Calculates the sum of all elements.
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Sum:", np.sum(arr))
+print(np.sum(arr))
 ```
 
-**Output:**
-
 ```text
-Sum: 15
+15
 ```
 
 ### `np.min()`
 
-`np.min()` returns the minimum value in an array.
+Returns the smallest value.
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Min:", np.min(arr))
+print(np.min(arr))
 ```
 
-**Output:**
-
 ```text
-Min: 1
+1
 ```
 
 ### `np.max()`
 
-`np.max()` returns the maximum value in an array.
+Returns the largest value.
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Max:", np.max(arr))
+print(np.max(arr))
 ```
 
-**Output:**
-
 ```text
-Max: 5
+5
 ```
 
 ---
 
-# 7. Boolean Masking & Fancy Indexing
+## 7. Boolean Masking & Fancy Indexing
 
-### Boolean Masking
+### Boolean Mask
 
-Boolean masking selects elements from an array based on a condition.
-
-```python
-arr = np.array([1, 2, 3, 4, 5])
-
-mask = arr > 3
-
-print("Boolean Mask:", mask)
-```
-
-**Output:**
-
-```text
-Boolean Mask: [False False False  True  True]
-```
-
-### Selecting Elements Using Boolean Masking
-
-A Boolean mask can be used to select only the elements that satisfy a condition.
+A condition applied to an array returns a Boolean array (`True` or `False` for each element).
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
 mask = arr > 3
-
-print("Elements > 3:", arr[mask])
+print(mask)
 ```
 
-**Output:**
+```text
+[False False False  True  True]
+```
+
+### Selecting with a Boolean Mask
+
+Using the mask as an index returns only the elements where the mask is `True`.
+
+```python
+arr = np.array([1, 2, 3, 4, 5])
+mask = arr > 3
+print(arr[mask])
+```
 
 ```text
-Elements > 3: [4 5]
+[4 5]
 ```
 
 ### Fancy Indexing
 
-Fancy indexing selects specific elements using their indices.
+Selects specific elements by passing a list of indices.
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
-print("Fancy Indexing:", arr[[0, 2, 4]])
+print(arr[[0, 2, 4]])
 ```
 
-**Output:**
-
 ```text
-Fancy Indexing: [1 3 5]
+[1 3 5]
 ```
 
 ---
 
-# 8. Random Numbers
+## 8. Random Numbers
+
+> - `np.random.seed(42)` fixes the random sequence so the output is the same every time.
+> - Without it, the values change on every run.
 
 ### `np.random.rand()`
 
-`np.random.rand()` generates random floating-point numbers from a uniform distribution over the interval `[0, 1)`.
+Generates random floats from a uniform distribution over `[0, 1)`.
 
 ```python
+np.random.seed(42)
 arr = np.random.rand(5)
-
-print("Random floats:", arr)
+print(arr)
 ```
-
-**Example Output:**
 
 ```text
-Random floats: [0.37454012 0.95071431 0.73199394 0.59865848 0.15601864]
+[0.37454012 0.95071431 0.73199394 0.59865848 0.15601864]
 ```
-
-> **Note:** Random output can change each time the code is executed.
 
 ### `np.random.randint()`
 
-`np.random.randint()` generates random integers from a specified range.
-
-The lower bound is included and the upper bound is excluded.
+- Generates random integers.
+- The lower bound is included and the upper bound is excluded, so the example below produces integers from `1` to `9`.
+- Syntax: `np.random.randint(low, high, size)`
 
 ```python
+np.random.seed(42)
 arr = np.random.randint(1, 10, 5)
-
-print("Random integers:", arr)
+print(arr)
 ```
-
-**Example Output:**
 
 ```text
-Random integers: [4 7 2 9 1]
+[7 4 8 5 7]
 ```
-
-> Here, the possible integers are from `1` to `9`. The upper limit `10` is excluded.
-
-> **Note:** Random output can change each time the code is executed.
 
 ### `np.random.randn()`
 
-`np.random.randn()` generates random values from a **standard normal distribution** with mean `0` and standard deviation `1`.
+Generates random values from the **standard normal distribution** (mean `0`, standard deviation `1`).
 
 ```python
+np.random.seed(42)
 arr = np.random.randn(5)
-
-print("Random normal:", arr)
+print(arr)
 ```
-
-**Example Output:**
 
 ```text
-Random normal: [-0.10321885  0.4105985   0.14404357  1.45427351  0.76103773]
+[ 0.49671415 -0.1382643   0.64768854  1.52302986 -0.23415337]
 ```
-
-> **Note:** Random output can change each time the code is executed.
 
 ---
 
-# 9. Linear Algebra
+## 9. Linear Algebra
 
 ### `np.dot()`
 
-`np.dot()` calculates the dot product. For two 2D arrays, it performs matrix multiplication.
+- Calculates the dot product.
+- For two 2D arrays, it performs matrix multiplication.
 
 ```python
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
-
-print("Matrix Multiplication:", np.dot(A, B))
+print(np.dot(A, B))
 ```
 
-**Output:**
-
 ```text
-Matrix Multiplication:
 [[19 22]
  [43 50]]
 ```
 
 ### `np.linalg.det()`
 
-`np.linalg.det()` calculates the determinant of a square matrix.
+Calculates the determinant of a square matrix.
 
 ```python
 A = np.array([[1, 2], [3, 4]])
-
-print("Determinant:", np.linalg.det(A))
+print(np.linalg.det(A))
 ```
-
-**Output:**
 
 ```text
-Determinant: -2.0
+-2.0000000000000004
 ```
+
+- The exact determinant is `-2`.
+- The tiny difference comes from floating-point arithmetic.
 
 ### `np.linalg.inv()`
 
-`np.linalg.inv()` calculates the inverse of a square matrix, provided the matrix is invertible.
+- Calculates the inverse of a square matrix.
+- The matrix must be invertible.
 
 ```python
 A = np.array([[1, 2], [3, 4]])
-
-print("Inverse:
-", np.linalg.inv(A))
+print(np.linalg.inv(A))
 ```
 
-**Output:**
-
 ```text
-Inverse:
 [[-2.   1. ]
  [ 1.5 -0.5]]
 ```
 
 ---
 
-# 10. Broadcasting
+## 10. Broadcasting
 
 ### Broadcasting
 
-Broadcasting allows arithmetic operations between arrays of different shapes when their dimensions are compatible.
+- Allows arithmetic between arrays of different shapes when their dimensions are compatible.
+- Here, the 1D array `B` is applied to each row of `A`.
 
 ```python
 A = np.array([[1, 2, 3],
               [4, 5, 6]])
-
 B = np.array([1, 0, 1])
-
-print("Broadcasting A+B:", A + B)
+print(A + B)
 ```
 
-**Output:**
-
 ```text
-Broadcasting A+B:
 [[2 2 4]
  [5 5 7]]
 ```
 
-Here, the 1D array `B` is automatically applied to each row of `A`.
-
 ---
 
-# 11. File I/O
+## 11. File I/O
 
 ### `np.save()`
 
-`np.save()` saves a NumPy array to a binary `.npy` file.
+- Saves an array to a binary `.npy` file.
+- It produces no printed output.
 
 ```python
 arr = np.array([1, 2, 3, 4, 5])
-
 np.save("arr.npy", arr)
 ```
 
-The file `arr.npy` stores the NumPy array in NumPy's binary format.
-
 ### `np.load()`
 
-`np.load()` loads a previously saved NumPy array from a file.
+Loads an array from a `.npy` file.
 
 ```python
 arr = np.load("arr.npy")
-
-print("Loaded array:", arr)
+print(arr)
 ```
 
-**Output:**
-
 ```text
-Loaded array: [1 2 3 4 5]
+[1 2 3 4 5]
 ```

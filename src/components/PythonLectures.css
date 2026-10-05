@@ -1,0 +1,74 @@
+/* Python section: lecture navigation nested under Python in the left sidebar. */
+.python-sidebar-lectures {
+  max-height: min(58vh, 620px);
+  overflow-y: auto;
+  margin: 4px 0 0 8px;
+  padding-left: 7px;
+  border-left: 1px solid var(--line);
+}
+
+.python-sidebar-lecture {
+  margin: 2px 0;
+}
+
+.python-sidebar-lecture-toggle {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 6px 5px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.python-sidebar-lecture-toggle:hover,
+.python-sidebar-lecture-toggle[aria-expanded='true'] {
+  background: var(--surface-muted);
+  color: var(--accent);
+}
+
+.python-sidebar-lecture-toggle:focus-visible,
+.python-sidebar-lecture-links a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.python-sidebar-lecture-links {
+  padding: 2px 3px 7px 7px;
+}
+
+.python-sidebar-lecture-links > a {
+  display: block;
+  padding: 4px 3px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.python-sidebar-lecture-links > a:hover {
+  color: var(--accent);
+}
+
+.python-notes-lecture {
+  scroll-margin-top: 90px;
+  margin-bottom: 42px;
+}
+
+.python-notes-lecture > h2 {
+  margin: 34px 0 12px;
+}
+
+@media (max-width: 620px) {
+  .python-sidebar-lectures {
+    max-height: 40vh;
+    width: min(320px, 82vw);
+  }
+}
